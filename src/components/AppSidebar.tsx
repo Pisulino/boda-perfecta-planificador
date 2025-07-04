@@ -23,7 +23,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar"
 
@@ -40,19 +39,18 @@ const items = [
 ]
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar()
+  const { state } = useSidebar()
   const location = useLocation()
   const currentPath = location.pathname
+  const collapsed = state === "collapsed"
 
   const isActive = (path: string) => currentPath === path
-  const isExpanded = items.some((i) => isActive(i.url))
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
     isActive ? "bg-sidebar-accent text-sidebar-primary font-medium" : "hover:bg-sidebar-accent/50"
 
   return (
     <Sidebar
-      className={collapsed ? "w-14" : "w-64"}
-      collapsible
+      collapsible="icon"
     >
       <div className="p-4 border-b border-sidebar-border">
         {!collapsed && (
@@ -68,9 +66,7 @@ export function AppSidebar() {
       </div>
 
       <SidebarContent>
-        <SidebarGroup
-          open={isExpanded}
-        >
+        <SidebarGroup>
           <SidebarGroupLabel className="text-sidebar-primary font-medium">
             Planificación
           </SidebarGroupLabel>

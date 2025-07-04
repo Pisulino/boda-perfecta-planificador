@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Clock, Users, Phone, Mail, CheckCircle } from "lucide-react"
+import { MapPin, Clock, Users, Phone, Mail, CheckCircle, UserCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 interface LugarEvento {
@@ -248,7 +248,7 @@ const Lugar = () => {
                 <div className="space-y-3">
                   {lugar.contacto && (
                     <div className="flex items-center text-sm">
-                      <User className="h-4 w-4 mr-2 text-muted-foreground" />
+                      <UserCircle className="h-4 w-4 mr-2 text-muted-foreground" />
                       <span className="font-medium mr-2">Contacto:</span>
                       {lugar.contacto}
                     </div>
