@@ -8,6 +8,12 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Invitados from "./pages/Invitados";
 import Lugar from "./pages/Lugar";
+import Flores from "./pages/Flores";
+import Comida from "./pages/Comida";
+import Fotografia from "./pages/Fotografia";
+import Musica from "./pages/Musica";
+import Estilistas from "./pages/Estilistas";
+import Cronograma from "./pages/Cronograma";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,13 +29,12 @@ const App = () => (
             <Route path="/" element={<Dashboard />} />
             <Route path="/invitados" element={<Invitados />} />
             <Route path="/lugar" element={<Lugar />} />
-            {/* Rutas placeholder para otras secciones */}
-            <Route path="/flores" element={<div className="p-6"><h1 className="text-2xl font-bold">Flores - Próximamente</h1></div>} />
-            <Route path="/comida" element={<div className="p-6"><h1 className="text-2xl font-bold">Comida - Próximamente</h1></div>} />
-            <Route path="/fotografia" element={<div className="p-6"><h1 className="text-2xl font-bold">Fotografía - Próximamente</h1></div>} />
-            <Route path="/musica" element={<div className="p-6"><h1 className="text-2xl font-bold">Música - Próximamente</h1></div>} />
-            <Route path="/estilistas" element={<div className="p-6"><h1 className="text-2xl font-bold">Estilistas - Próximamente</h1></div>} />
-            <Route path="/cronograma" element={<div className="p-6"><h1 className="text-2xl font-bold">Cronograma - Próximamente</h1></div>} />
+            <Route path="/flores" element={<Flores />} />
+            <Route path="/comida" element={<Comida />} />
+            <Route path="/fotografia" element={<Fotografia />} />
+            <Route path="/musica" element={<Musica />} />
+            <Route path="/estilistas" element={<Estilistas />} />
+            <Route path="/cronograma" element={<Cronograma />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
