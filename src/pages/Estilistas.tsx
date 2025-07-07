@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Trash2, Edit, User, Plus, CheckCircle, Users } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface Estilista {
   id: string
@@ -25,7 +26,7 @@ interface Estilista {
 
 const Estilistas = () => {
   const { toast } = useToast()
-  const [estilistas, setEstilistas] = useState<Estilista[]>([
+  const [estilistas, setEstilistas] = useLocalStorage<Estilista[]>('wedding-estilistas', [
     {
       id: "1",
       tipo: "completo",

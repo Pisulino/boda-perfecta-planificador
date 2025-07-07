@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Trash2, Edit, Utensils, Plus, CheckCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface Menu {
   id: string
@@ -24,7 +25,7 @@ interface Menu {
 
 const Comida = () => {
   const { toast } = useToast()
-  const [menus, setMenus] = useState<Menu[]>([
+  const [menus, setMenus] = useLocalStorage<Menu[]>('wedding-comida', [
     {
       id: "1",
       tipo: "entrada",

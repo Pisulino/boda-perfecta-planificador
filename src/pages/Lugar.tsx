@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Clock, Users, Phone, Mail, CheckCircle, UserCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface LugarEvento {
   id: string
@@ -24,7 +25,7 @@ interface LugarEvento {
 
 const Lugar = () => {
   const { toast } = useToast()
-  const [lugares, setLugares] = useState<LugarEvento[]>([
+  const [lugares, setLugares] = useLocalStorage<LugarEvento[]>('wedding-lugares', [
     {
       id: "1",
       nombre: "Hacienda Los Rosales",

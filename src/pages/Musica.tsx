@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Trash2, Edit, Music, Plus, CheckCircle, Volume2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface ServicioMusical {
   id: string
@@ -25,7 +26,7 @@ interface ServicioMusical {
 
 const Musica = () => {
   const { toast } = useToast()
-  const [servicios, setServicios] = useState<ServicioMusical[]>([
+  const [servicios, setServicios] = useLocalStorage<ServicioMusical[]>('wedding-musica', [
     {
       id: "1",
       tipo: "ceremonia",

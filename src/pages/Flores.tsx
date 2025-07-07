@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Trash2, Edit, Palette, Plus, CheckCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface Arreglo {
   id: string
@@ -23,7 +24,7 @@ interface Arreglo {
 
 const Flores = () => {
   const { toast } = useToast()
-  const [arreglos, setArreglos] = useState<Arreglo[]>([
+  const [arreglos, setArreglos] = useLocalStorage<Arreglo[]>('wedding-flores', [
     {
       id: "1",
       tipo: "Bouquet de novia",

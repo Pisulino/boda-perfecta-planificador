@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Trash2, Edit, Calendar, Plus, Clock, CheckCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface Evento {
   id: string
@@ -24,7 +25,7 @@ interface Evento {
 
 const Cronograma = () => {
   const { toast } = useToast()
-  const [eventos, setEventos] = useState<Evento[]>([
+  const [eventos, setEventos] = useLocalStorage<Evento[]>('wedding-cronograma', [
     {
       id: "1",
       titulo: "Llegada de invitados",
@@ -50,7 +51,7 @@ const Cronograma = () => {
     {
       id: "3",
       titulo: "Sesión de fotos",
-      descripción: "Fotos familiares y de pareja",
+      descripcion: "Fotos familiares y de pareja",
       fecha: "2024-06-15",
       hora: "18:00",
       duracion: "1 hora",

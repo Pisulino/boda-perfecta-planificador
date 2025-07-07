@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Trash2, Edit, Image, Plus, CheckCircle, Camera } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 interface Servicio {
   id: string
@@ -25,7 +26,7 @@ interface Servicio {
 
 const Fotografia = () => {
   const { toast } = useToast()
-  const [servicios, setServicios] = useState<Servicio[]>([
+  const [servicios, setServicios] = useLocalStorage<Servicio[]>('wedding-fotografia', [
     {
       id: "1",
       tipo: "fotografia",
