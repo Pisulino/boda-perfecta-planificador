@@ -13,56 +13,76 @@ import {
   Calendar,
   CheckCircle
 } from "lucide-react"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 const Dashboard = () => {
+  // Leer datos reales de localStorage
+  const [invitados] = useLocalStorage('wedding-invitados', [])
+  const [lugares] = useLocalStorage('wedding-lugares', [])
+  const [flores] = useLocalStorage('wedding-flores', [])
+  const [comida] = useLocalStorage('wedding-comida', [])
+  const [fotografia] = useLocalStorage('wedding-fotografia', [])
+  const [musica] = useLocalStorage('wedding-musica', [])
+  const [estilistas] = useLocalStorage('wedding-estilistas', [])
+  const [cronograma] = useLocalStorage('wedding-cronograma', [])
+
+  // Calcular estadísticas dinámicamente
+  const getStatus = (completed: number, total: number) => {
+    if (total === 0) return { status: "Sin datos", color: "bg-gray-100 text-gray-700" }
+    if (completed === total) return { status: "Completado", color: "bg-green-100 text-green-700" }
+    if (completed > 0) return { status: "En progreso", color: "bg-yellow-100 text-yellow-700" }
+    return { status: "Pendiente", color: "bg-gray-100 text-gray-700" }
+  }
+
+  const invitadosConfirmados = invitados.filter(i => i.confirmado).length
+  const lugaresConfirmados = lugares.filter(l => l.confirmado).length
+  const floresConfirmadas = flores.filter(f => f.confirmado).length
+  const comidaConfirmada = comida.filter(c => c.confirmado).length
+  const fotografiaConfirmada = fotografia.filter(f => f.confirmado).length
+  const musicaConfirmada = musica.filter(m => m.confirmado).length
+
   const sections = [
     { 
       title: "Invitados", 
       icon: Users, 
-      completed: 5, 
-      total: 100, 
-      status: "En progreso",
-      color: "bg-pink-100 text-pink-700"
+      completed: invitadosConfirmados, 
+      total: invitados.length, 
+      ...getStatus(invitadosConfirmados, invitados.length)
     },
     { 
       title: "Lugar", 
       icon: MapPin, 
-      completed: 1, 
-      total: 1, 
-      status: "Completado",
-      color: "bg-green-100 text-green-700"
+      completed: lugaresConfirmados, 
+      total: lugares.length, 
+      ...getStatus(lugaresConfirmados, lugares.length)
     },
     { 
       title: "Flores", 
       icon: Palette, 
-      completed: 0, 
-      total: 3, 
-      status: "Pendiente",
-      color: "bg-gray-100 text-gray-700"
+      completed: floresConfirmadas, 
+      total: flores.length, 
+      ...getStatus(floresConfirmadas, flores.length)
     },
     { 
       title: "Comida", 
       icon: Utensils, 
-      completed: 2, 
-      total: 5, 
-      status: "En progreso",
-      color: "bg-yellow-100 text-yellow-700"
+      completed: comidaConfirmada, 
+      total: comida.length, 
+      ...getStatus(comidaConfirmada, comida.length)
     },
     { 
       title: "Fotografía", 
       icon: Image, 
-      completed: 1, 
-      total: 2, 
-      status: "En progreso",
-      color: "bg-blue-100 text-blue-700"
+      completed: fotografiaConfirmada, 
+      total: fotografia.length, 
+      ...getStatus(fotografiaConfirmada, fotografia.length)
     },
     { 
       title: "Música", 
       icon: Music, 
-      completed: 0, 
-      total: 2, 
-      status: "Pendiente",
-      color: "bg-purple-100 text-purple-700"
+      completed: musicaConfirmada, 
+      total: musica.length, 
+      ...getStatus(musicaConfirmada, musica.length)
     },
   ]
 
