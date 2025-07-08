@@ -34,7 +34,7 @@ const Dashboard = () => {
     return { status: "Pendiente", color: "bg-gray-100 text-gray-700" }
   }
 
-  const invitadosConfirmados = invitados.filter(i => i.confirmado).length
+  const invitadosConfirmados = invitados.filter(i => i.confirmado === 'confirmado').length
   const lugaresConfirmados = lugares.filter(l => l.confirmado).length
   const floresConfirmadas = flores.filter(f => f.confirmado).length
   const comidaConfirmada = comida.filter(c => c.confirmado).length
