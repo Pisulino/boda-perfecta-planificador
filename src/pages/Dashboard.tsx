@@ -43,6 +43,15 @@ const Dashboard = () => {
   const estilistasConfirmados = estilistas.filter(e => e.confirmado).length
   const cronogramaCompletado = cronograma.filter(c => c.completado).length
 
+  // Debug logs
+  console.log('Dashboard data debug:', {
+    flores: flores,
+    floresLength: flores.length,
+    floresConfirmadas: floresConfirmadas,
+    invitados: invitados.length,
+    lugares: lugares.length
+  })
+
   const sections = [
     { 
       title: "Invitados", 
