@@ -40,6 +40,8 @@ const Dashboard = () => {
   const comidaConfirmada = comida.filter(c => c.confirmado).length
   const fotografiaConfirmada = fotografia.filter(f => f.confirmado).length
   const musicaConfirmada = musica.filter(m => m.confirmado).length
+  const estilistasConfirmados = estilistas.filter(e => e.confirmado).length
+  const cronogramaCompletado = cronograma.filter(c => c.completado).length
 
   const sections = [
     { 
@@ -84,11 +86,26 @@ const Dashboard = () => {
       total: musica.length, 
       ...getStatus(musicaConfirmada, musica.length)
     },
+    { 
+      title: "Estilistas", 
+      icon: User, 
+      completed: estilistasConfirmados, 
+      total: estilistas.length, 
+      ...getStatus(estilistasConfirmados, estilistas.length)
+    },
+    { 
+      title: "Cronograma", 
+      icon: Calendar, 
+      completed: cronogramaCompletado, 
+      total: cronograma.length, 
+      ...getStatus(cronogramaCompletado, cronograma.length)
+    },
   ]
 
-  const totalProgress = sections.reduce((acc, section) => 
-    acc + (section.completed / section.total * 100), 0
-  ) / sections.length
+  const totalProgress = sections.reduce((acc, section) => {
+    if (section.total === 0) return acc
+    return acc + (section.completed / section.total * 100)
+  }, 0) / sections.filter(section => section.total > 0).length || 0
 
   return (
     <div className="space-y-8">
